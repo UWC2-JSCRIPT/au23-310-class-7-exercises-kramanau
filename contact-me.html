@@ -72,13 +72,16 @@
         </div>
 
         <div class="form-group hidden">
-          <label for="coding-language">Coding language</label>
-          <input
-            id="coding-language"
-            class="form-control validate-input"
-            type="text"
-            name="coding-language"
-          />
+          <label for="kind">Coding language</label>
+          <select class="form-control" name="kind" id="coding-language">
+            <option value="choose" selected="selected" disabled>
+              Choose one
+            </option>
+            <option value="python">Python</option>
+            <option value="javascript">Javascript</option>
+            <option value="c">C/C++</option>
+            <option value="java">Java</option>
+          </select>
           <small class="error" aria-live="polite"></small>
         </div>
 

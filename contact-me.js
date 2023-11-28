@@ -32,6 +32,17 @@ const validateEmail = (email) => {
     }
 };
 
+const validateUrl = (url) => {
+    const re = /https?\:\/\/.+\..+/;
+    if(re.test(url.value.trim())){
+        url.parentElement.classList.remove("invalid");
+        return true;
+    } else {
+        url.parentElement.classList.add("invalid");
+        return false;
+    }
+}
+
 const handleSelect = (selectElement) => {
     const selectedValue = selectElement.value;
     if (selectedValue === "job"){
@@ -63,6 +74,23 @@ form.addEventListener("submit", (e) => {
     if (!validLength(message, 10)){
         msg += '\nMessage must be included and > 10 characters.';
         valid = false;
+    }
+    if (select.value === 'job'){
+        if (!validLength(job, 0)){
+            msg += '\nEnter a Job title.';
+            valid = false;
+        }
+        if(!validateUrl(companyWebsite)){
+            msg += '\nCompany website must be a valid URL.';
+            valid = false;
+        }
+    } else if (select.value === 'talk'){
+        codingLanguage.parentElement.classList.remove("invalid");
+        if (codingLanguage.value === 'choose'){
+            codingLanguage.parentElement.classList.add("invalid");
+            msg += '\nPlease select a coding language.';
+            valid = false;
+        }
     }
 
     if (!valid){
